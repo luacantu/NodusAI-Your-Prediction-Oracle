@@ -76,19 +76,26 @@ Receive Assessment
 ````
 Supported Networks
 
-Network	    Currency	Status
-Base Sepolia	USDC	Testnet
-Base Mainnet	USDC	Production
+| Network      | Currency | Environment |
+| ------------ | -------- | ----------- |
+| Base Sepolia | USDC     | Testnet     |
+| Base Mainnet | USDC     | Production  |
+
 
 Payment Headers
 
-Header	             Description
-X-Payment-Tx	       Transaction hash proving payment
-X-Payment-Network	    Network where payment was made
+| Header              | Description                           |
+| ------------------- | ------------------------------------- |
+| `X-Payment-Tx`      | Transaction hash proving payment      |
+| `X-Payment-Network` | Network on which the payment was made |
+
 
 Error Codes
-Code	Description
-- payment_required	Initial request requires payment
-- payment_expired	Payment window expired
-- payment_invalid	Transaction not found or invalid
-- payment_insufficient	Amount less than required
+
+| Code                   | Description                                |
+| ---------------------- | ------------------------------------------ |
+| `payment_required`     | Payment is required to process the request |
+| `payment_expired`      | Payment window has expired                 |
+| `payment_invalid`      | Transaction not found or invalid           |
+| `payment_insufficient` | Amount paid is less than required          |
+

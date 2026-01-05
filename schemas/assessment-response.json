@@ -1,0 +1,97 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://api.example.com/schemas/assessment-response.json",
+  "title": "NodusAI Assessment Response",
+  "description": "Schema for likelihood assessment responses from the NodusAI API",
+  "type": "object",
+  "required": ["id", "query", "likelihood", "assessment", "generated_at", "disclaimer"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for this assessment",
+      "pattern": "^assess_[a-zA-Z0-9]+$",
+      "example": "assess_abc123xyz789"
+    },
+    "query": {
+      "type": "string",
+      "description": "The original research question submitted",
+      "maxLength": 1000
+    },
+    "likelihood": {
+      "type": "object",
+      "description": "Probability estimate with confidence interval",
+      "required": ["estimate", "lower_bound", "upper_bound", "confidence_level"],
+      "properties": {
+        "estimate": {
+          "type": "number",
+          "description": "Point estimate of likelihood (0.0 to 1.0)",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "lower_bound": {
+          "type": "number",
+          "description": "Lower bound of confidence interval",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "upper_bound": {
+          "type": "number",
+          "description": "Upper bound of confidence interval",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "confidence_level": {
+          "type": "string",
+          "enum": ["narrow", "standard", "wide"]
+        }
+      }
+    },
+    "assessment": {
+      "type": "string",
+      "description": "Human-readable likelihood category",
+      "enum": ["Highly Unlikely", "Unlikely", "Possible", "Likely", "Highly Likely", "Very Highly Likely"]
+    },
+    "reasoning_summary": {
+      "type": "string",
+      "description": "Brief explanation of the assessment basis",
+      "maxLength": 500
+    },
+    "sources": {
+      "type": "array",
+      "description": "Cited evidence sources with metadata",
+      "items": {
+        "type": "object",
+        "required": ["title", "url", "published_at"],
+        "properties": {
+          "title": { "type": "string" },
+          "url": { "type": "string", "format": "uri" },
+          "published_at": { "type": "string", "format": "date-time" },
+          "relevance": { "type": "string", "enum": ["high", "medium", "low"] },
+          "category": { "type": "string", "enum": ["news", "government", "financial", "academic", "social"] }
+        }
+      }
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when assessment was generated"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when this assessment expires"
+    },
+    "disclaimer": {
+      "type": "string",
+      "description": "Required legal disclaimer text"
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "version": { "type": "string" },
+        "processing_time_ms": { "type": "integer", "minimum": 0 },
+        "sources_analyzed": { "type": "integer", "minimum": 0 }
+      }
+    }
+  }
+}

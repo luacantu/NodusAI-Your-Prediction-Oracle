@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://api.example.com/schemas/assessment-request.json",
+  "title": "NodusAI Assessment Request",
+  "description": "Schema for likelihood assessment requests to the NodusAI API",
+  "type": "object",
+  "required": ["query"],
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "The research question to assess",
+      "minLength": 10,
+      "maxLength": 1000,
+      "example": "Will the Federal Reserve raise interest rates in Q1 2026?"
+    },
+    "sources": {
+      "type": "array",
+      "description": "Source categories to include in analysis",
+      "items": {
+        "type": "string",
+        "enum": ["news", "government", "financial", "academic", "social"]
+      },
+      "uniqueItems": true,
+      "default": ["news", "government", "financial"],
+      "example": ["news", "government", "financial"]
+    },
+    "options": {
+      "type": "object",
+      "description": "Additional configuration options",
+      "properties": {
+        "include_sources": {
+          "type": "boolean",
+          "description": "Include source citations in response",
+          "default": true
+        },
+        "confidence_level": {
+          "type": "string",
+          "description": "Confidence interval width",
+          "enum": ["narrow", "standard", "wide"],
+          "default": "standard"
+        },
+        "max_sources": {
+          "type": "integer",
+          "description": "Maximum number of sources to cite",
+          "minimum": 1,
+          "maximum": 50,
+          "default": 10
+        },
+        "language": {
+          "type": "string",
+          "description": "Response language (ISO 639-1)",
+          "pattern": "^[a-z]{2}$",
+          "default": "en"
+        }
+      }
+    }
+  }
+}

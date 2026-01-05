@@ -47,10 +47,10 @@ Outputs are **probabilistic research signals**, not assertions of fact.
 
 NodusAI integrates x402, enabling:
 
--Pay-per-request pricing
--USDC payments across supported networks
--No subscriptions required
--Deterministic payment → response flow
+- Pay-per-request pricing
+- USDC payments across supported networks
+- No subscriptions required
+- Deterministic payment → response flow
 
 This model allows access to research signals without relying on tokens, ads, or data extraction.
 

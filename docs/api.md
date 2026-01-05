@@ -28,29 +28,20 @@ Request
   }
 }
 
+```
+## Parameters
+  Field	 Type	 Required	 Description
+  query	string	Yes	Research question (10-1000 chars)
+  sources	array	No	Source categories to analyze
+  options.include_sources	boolean	No	Include source citations (default: true)
+  options.confidence_level	string	No	narrow, standard, or wide
+  options.max_sources	integer	No	Max sources to cite (1-50, default: 10)
 
+## Source Categories
+  news - News articles and media
+  government - Government publications and data
+  financial - Financial reports and filings
+  academic - Academic papers and research
+  social - Social media and forums
 
-{
-  "id": "assess_abc123xyz789",
-  "query": "Will the Federal Reserve raise interest rates in Q1 2026?",
-  "likelihood": {
-    "estimate": 0.35,
-    "lower_bound": 0.25,
-    "upper_bound": 0.45,
-    "confidence_level": "standard"
-  },
-  "assessment": "Unlikely",
-  "reasoning_summary": "Based on current economic indicators...",
-  "sources": [
-    {
-      "title": "Federal Reserve Press Release",
-      "url": "https://example.gov/fed-release",
-      "published_at": "2025-12-15T14:00:00Z",
-      "relevance": "high",
-      "category": "government"
-    }
-  ],
-  "generated_at": "2026-01-05T12:34:56Z",
-  "expires_at": "2026-01-05T18:34:56Z",
-  "disclaimer": "This is a probabilistic research signal, not a prediction or financial advice."
-}
+--- 

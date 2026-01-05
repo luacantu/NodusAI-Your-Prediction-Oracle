@@ -36,7 +36,7 @@ Content-Type: application/json
 {
   "error": {
     "code": "payment_required",
-    "message": "Payment required to process this request",
+    "message": "Payment is required to process this request",
     "payment": {
       "amount": "0.01",
       "currency": "USDC",
@@ -47,6 +47,7 @@ Content-Type: application/json
     }
   }
 }
+
 
 ```
 Send Payment

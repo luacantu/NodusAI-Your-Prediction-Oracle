@@ -95,7 +95,8 @@ MIT License - See LICENSE for details.
 Documentation Issues: Open a GitHub issue
 Security Concerns: See SECURITY.md
 
-## API Examplek
+## API Example
+
 // All examples use mock endpoints - replace with your actual API URL
 const response = await fetch('https://api.example.com/v1/assess', {
   method: 'POST',
@@ -108,6 +109,7 @@ const response = await fetch('https://api.example.com/v1/assess', {
     sources: ['news', 'government', 'financial']
   })
 });
+
 const result = await response.json();
 console.log(result.assessment);  // e.g., "Unlikely"
 console.log(result.likelihood);  // { estimate: 0.35, lower_bound: 0.25, upper_bound: 0.45 }

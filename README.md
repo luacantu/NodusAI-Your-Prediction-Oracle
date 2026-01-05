@@ -124,8 +124,8 @@ Legal & Disclaimers - Terms, liability, and usage restrictions
 
 ## Repository Structure
 
-├── docs/           # Documentation
-├── schemas/        # JSON schemas for API validation
-├── examples/       # Code examples and client libraries
-├── demo-ui/        # Interactive demo (mock data only)
-└── README.md       # This file
+  ├── docs/           # Documentation
+  ├── schemas/        # JSON schemas for API validation
+  ├── examples/       # Code examples and client libraries
+  ├── demo-ui/        # Interactive demo (mock data only)
+  └── README.md       # This file

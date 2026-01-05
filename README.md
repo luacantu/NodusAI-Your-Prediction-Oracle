@@ -41,6 +41,52 @@ To avoid ambiguity, NodusAI is intentionally **not**:
 
 Outputs are **probabilistic research signals**, not assertions of fact.
 
+----
+
+## x402 Micropayments
+
+NodusAI integrates x402, enabling:
+
+-Pay-per-request pricing
+-USDC payments across supported networks
+-No subscriptions required
+-Deterministic payment → response flow
+
+This model allows access to research signals without relying on tokens, ads, or data extraction.
+
+--- 
+## Safety & Legal Posture
+
+NodusAI provides evidence-backed likelihood assessments based on publicly available information.
+
+- Outputs are research signals, not predictions or guarantees
+- No trading, betting, or financial actions are recommended
+- No assurance of accuracy or completeness is implied
+- Users are responsible for their own decisions
+
+For more details, see docs/legal.md
+
+## Use Cases
+
+- Prediction market research
+- Outcome verification tooling
+- Risk analysis dashboards
+- Event-based decision support
+- Academic or exploratory market analysis
+
+---
+
+## Status
+
+NodusAI is under active development.
+Interfaces and schemas may evolve as the platform expands.
+
+Learn More
+
+Website: https://nodusai.app
+
+Documentation: see /docs
+
 ---
 
 ## Output Philosophy

@@ -1,21 +1,25 @@
-# Security Guidelines
+## Security Guidelines
 
-## Reporting Security Issues
+### Reporting Security Issues
 
-If you discover a security vulnerability, please report it responsibly:
+If you discover a potential security vulnerability, please report it responsibly:
 
-1. **Do NOT** open a public issue
-2. Email security concerns to the appropriate contact
-3. Provide detailed information about the vulnerability
-4. Allow reasonable time for response and remediation
+- **Do NOT** open a public GitHub issue
+- Contact the maintainers via the appropriate security email
+- Provide clear reproduction steps and impact details
+- Allow reasonable time for investigation and remediation before disclosure
 
-## API Security Best Practices
+---
 
-### API Key Management
+### API Security Best Practices
+
+#### Credential Management
+
+**DO**
+- Store credentials in environment variables or secure secret managers
+- Rotate credentials regularly
+- Limit credential scope and permissions
 
 ```bash
-# DO: Use environment variables
-export NODUSAI_API_KEY="your_key_here"
-
-# DON'T: Hardcode keys in source code
-const apiKey = "sk_live_abc123";  # NEVER DO THIS
+# Example: using environment variables
+export NODUSAI_ACCESS_TOKEN="your_token_here"

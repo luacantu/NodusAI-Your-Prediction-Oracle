@@ -1,0 +1,92 @@
+
+---
+
+## 2. .gitignore
+
+```gitignore
+# Environment and secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+secrets/
+credentials/
+
+# Dependencies
+node_modules/
+vendor/
+.pnpm-store/
+
+# Build outputs
+dist/
+build/
+out/
+.next/
+.nuxt/
+
+# IDE and editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+coverage/
+.nyc_output/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Python
+__pycache__/
+*.py[cod]
+.Python
+*.egg-info/
+.eggs/
+venv/
+.venv/
+
+# Production/Infrastructure (should never be in public repo)
+infrastructure/
+terraform/
+*.tfstate
+*.tfstate.*
+.terraform/
+docker-compose.prod.yml
+k8s/
+helm/
+
+# Proprietary (should never be in public repo)
+oracle/
+engine/
+scoring/
+models/
+weights/
+training/
+internal/
+private/
+
+# Database
+*.sql
+*.sqlite
+*.db
+migrations/
+
+# Certificates
+*.crt
+*.cer
+*.p12
+*.pfx

@@ -23,3 +23,31 @@ If you discover a potential security vulnerability, please report it responsibly
 ```bash
 # Example: using environment variables
 export NODUSAI_ACCESS_TOKEN="your_token_here"
+
+```
+## Security Practices
+
+### Secure Storage
+
+Clients should follow standard security best practices when integrating with the NodusAI API:
+
+- Store access credentials in environment variables or secure secret managers
+- Never commit credentials to version control
+- Rotate credentials periodically
+- Use separate credentials for development and production environments
+
+---
+
+### Request Security
+
+All requests must be made over HTTPS.
+
+```js
+// Always use HTTPS
+const API_URL = 'https://api.example.com';
+
+// Include appropriate headers
+const headers = {
+  'Authorization': `Bearer ${process.env.NODUSAI_ACCESS_TOKEN}`,
+  'Content-Type': 'application/json'
+};

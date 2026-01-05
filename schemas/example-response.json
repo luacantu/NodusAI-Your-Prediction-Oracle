@@ -1,0 +1,44 @@
+{
+  "_comment": "This is an example response from the NodusAI API. All data is illustrative only.",
+  "id": "assess_example123",
+  "query": "Will the Federal Reserve raise interest rates in Q1 2026?",
+  "likelihood": {
+    "estimate": 0.35,
+    "lower_bound": 0.25,
+    "upper_bound": 0.45,
+    "confidence_level": "standard"
+  },
+  "assessment": "Unlikely",
+  "reasoning_summary": "Based on current economic indicators and Fed communications, a rate increase in Q1 2026 appears unlikely given persistent inflation concerns and labor market dynamics.",
+  "sources": [
+    {
+      "title": "Federal Reserve Press Release - December 2025",
+      "url": "https://example.gov/fed-release-dec-2025",
+      "published_at": "2025-12-15T14:00:00Z",
+      "relevance": "high",
+      "category": "government"
+    },
+    {
+      "title": "Economic Outlook Report Q4 2025",
+      "url": "https://example.com/economic-outlook-q4-2025",
+      "published_at": "2025-12-10T09:30:00Z",
+      "relevance": "high",
+      "category": "financial"
+    },
+    {
+      "title": "Fed Chair Comments on Monetary Policy",
+      "url": "https://example.news/fed-chair-interview",
+      "published_at": "2025-12-18T16:45:00Z",
+      "relevance": "medium",
+      "category": "news"
+    }
+  ],
+  "generated_at": "2026-01-05T12:34:56Z",
+  "expires_at": "2026-01-05T18:34:56Z",
+  "disclaimer": "This is a probabilistic research signal, not a prediction or financial advice. See documentation for full disclaimers.",
+  "meta": {
+    "version": "1.0",
+    "processing_time_ms": 2340,
+    "sources_analyzed": 47
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://api.example.com/schemas/error-response.json",
+  "title": "NodusAI Error Response",
+  "description": "Schema for error responses from the NodusAI API",
+  "type": "object",
+  "required": ["error"],
+  "properties": {
+    "error": {
+      "type": "object",
+      "required": ["code", "message"],
+      "properties": {
+        "code": {
+          "type": "string",
+          "enum": [
+            "invalid_request",
+            "invalid_query",
+            "invalid_sources",
+            "unauthorized",
+            "forbidden",
+            "not_found",
+            "rate_limited",
+            "payment_required",
+            "payment_expired",
+            "payment_invalid",
+            "payment_insufficient",
+            "internal_error",
+            "service_unavailable"
+          ]
+        },
+        "message": {
+          "type": "string",
+          "description": "Human-readable error description"
+        },
+        "details": {
+          "type": "object",
+          "description": "Additional error details",
+          "additionalProperties": true
+        },
+        "payment": {
+          "type": "object",
+          "description": "Payment information (for 402 errors only)",
+          "properties": {
+            "amount": { "type": "string" },
+            "currency": { "type": "string", "enum": ["USDC"] },
+            "network": { "type": "string", "enum": ["base-mainnet", "base-sepolia"] },
+            "recipient": { "type": "string", "pattern": "^0x[a-fA-F0-9]{40}$" },
+            "expires_at": { "type": "string", "format": "date-time" },
+            "payment_id": { "type": "string" }
+          }
+        }
+      }
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Unique request identifier for support",
+      "pattern": "^req_[a-zA-Z0-9]+$"
+    }
+  }
+}

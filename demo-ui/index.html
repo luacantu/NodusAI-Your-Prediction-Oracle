@@ -1,0 +1,413 @@
+
+---
+
+## 19. demo-ui/index.html
+
+This file is long. Here it is:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NodusAI Demo - Likelihood Assessment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8fafc;
+      --bg-tertiary: #f1f5f9;
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-tertiary: #94a3b8;
+      --border: #e2e8f0;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --success: #22c55e;
+      --warning: #f59e0b;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-primary: #0f172a;
+        --bg-secondary: #1e293b;
+        --bg-tertiary: #334155;
+        --text-primary: #f8fafc;
+        --text-secondary: #cbd5e1;
+        --text-tertiary: #64748b;
+        --border: #334155;
+      }
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+
+    .header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .header p { color: var(--text-secondary); font-size: 1.125rem; }
+
+    .demo-badge {
+      display: inline-block;
+      background: var(--warning);
+      color: #000;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-top: 1rem;
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .main-grid { grid-template-columns: 1fr; }
+    }
+
+    .panel {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .panel-header {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-tertiary);
+    }
+
+    .panel-header h2 { font-size: 1rem; font-weight: 600; }
+    .panel-content { padding: 1.5rem; }
+
+    .form-group { margin-bottom: 1.5rem; }
+    .form-group label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: 0.75rem 1rem;
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 1rem;
+      color: var(--text-primary);
+      resize: vertical;
+    }
+
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .source-checkboxes { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+    .source-checkbox {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .source-checkbox:has(input:checked) {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+
+    .source-checkbox input { display: none; }
+    .source-checkbox span { font-size: 0.875rem; font-weight: 500; }
+
+    .btn-primary {
+      width: 100%;
+      padding: 0.875rem 1.5rem;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover { background: var(--accent-hover); }
+
+    .result-placeholder {
+      text-align: center;
+      padding: 3rem 2rem;
+      color: var(--text-tertiary);
+    }
+
+    .loading { text-align: center; padding: 3rem 2rem; }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 1rem;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .likelihood-display {
+      text-align: center;
+      padding: 2rem;
+      background: var(--bg-tertiary);
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+    }
+
+    .likelihood-value { font-size: 3rem; font-weight: 700; color: var(--accent); }
+    .likelihood-label { font-size: 1.25rem; font-weight: 600; margin-top: 0.5rem; }
+    .confidence-interval { font-size: 0.875rem; color: var(--text-tertiary); margin-top: 0.5rem; }
+
+    .result-section { margin-bottom: 1.5rem; }
+    .result-section-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .result-section p { color: var(--text-secondary); }
+
+    .sources-list { list-style: none; }
+    .sources-list li {
+      padding: 0.75rem;
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+    }
+
+    .source-title { font-weight: 500; font-size: 0.875rem; }
+    .source-meta { font-size: 0.75rem; color: var(--text-tertiary); margin-top: 0.25rem; }
+
+    .disclaimer {
+      margin-top: 2rem;
+      padding: 1rem;
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 8px;
+    }
+
+    .disclaimer-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--warning);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .disclaimer p { font-size: 0.8125rem; color: var(--text-secondary); }
+
+    .footer {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-tertiary);
+      font-size: 0.875rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>NodusAI Demo</h1>
+      <p>Interactive demonstration of likelihood assessments</p>
+      <span class="demo-badge">Mock Data Only</span>
+    </header>
+
+    <main class="main-grid">
+      <div class="panel">
+        <div class="panel-header"><h2>Research Query</h2></div>
+        <div class="panel-content">
+          <div class="form-group">
+            <label for="query">Enter your research question</label>
+            <textarea id="query" placeholder="e.g., Will the Federal Reserve raise interest rates in Q1 2026?"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Source Categories</label>
+            <div class="source-checkboxes">
+              <label class="source-checkbox"><input type="checkbox" value="news" checked><span>News</span></label>
+              <label class="source-checkbox"><input type="checkbox" value="government" checked><span>Government</span></label>
+              <label class="source-checkbox"><input type="checkbox" value="financial" checked><span>Financial</span></label>
+              <label class="source-checkbox"><input type="checkbox" value="academic"><span>Academic</span></label>
+              <label class="source-checkbox"><input type="checkbox" value="social"><span>Social</span></label>
+            </div>
+          </div>
+
+          <button class="btn-primary" id="submitBtn">Generate Assessment</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header"><h2>Assessment Result</h2></div>
+        <div class="panel-content">
+          <div class="result-placeholder" id="placeholder">
+            <p>Enter a research question and click "Generate Assessment"</p>
+          </div>
+
+          <div class="loading" id="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Generating mock assessment...</p>
+          </div>
+
+          <div id="result" style="display: none;">
+            <div class="likelihood-display">
+              <div class="likelihood-value" id="likelihoodValue">--</div>
+              <div class="likelihood-label" id="assessmentLabel">--</div>
+              <div class="confidence-interval" id="confidenceInterval">--</div>
+            </div>
+
+            <div class="result-section">
+              <div class="result-section-title">Summary</div>
+              <p id="reasoningSummary"></p>
+            </div>
+
+            <div class="result-section">
+              <div class="result-section-title">Sources</div>
+              <ul class="sources-list" id="sourcesList"></ul>
+            </div>
+
+            <div class="disclaimer">
+              <div class="disclaimer-title">Important Notice</div>
+              <p>This demo uses <strong>mocked data</strong> for demonstration purposes only. No real API calls are made.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>This is a demonstration using mock data.<br>NodusAI's core oracle engine is proprietary and not included.</p>
+    </footer>
+  </div>
+
+  <script>
+    const MOCK_SOURCES = [
+      { title: 'Federal Reserve Press Release', category: 'government', relevance: 'high' },
+      { title: 'Economic Outlook Report', category: 'financial', relevance: 'high' },
+      { title: 'Treasury Analysis', category: 'government', relevance: 'medium' },
+      { title: 'Market Weekly', category: 'financial', relevance: 'medium' },
+    ];
+
+    const LABELS = [
+      { min: 0.00, max: 0.15, label: 'Highly Unlikely' },
+      { min: 0.15, max: 0.35, label: 'Unlikely' },
+      { min: 0.35, max: 0.50, label: 'Possible' },
+      { min: 0.50, max: 0.70, label: 'Likely' },
+      { min: 0.70, max: 0.85, label: 'Highly Likely' },
+      { min: 0.85, max: 1.00, label: 'Very Highly Likely' },
+    ];
+
+    function getLabel(est) {
+      for (const cat of LABELS) {
+        if (est >= cat.min && est < cat.max) return cat.label;
+      }
+      return 'Very Highly Likely';
+    }
+
+    function generateMock(query, sources) {
+      const estimate = Math.round((0.15 + Math.random() * 0.70) * 100) / 100;
+      const variance = 0.05 + Math.random() * 0.10;
+      const lower = Math.max(0, Math.round((estimate - variance) * 100) / 100);
+      const upper = Math.min(1, Math.round((estimate + variance) * 100) / 100);
+
+      const filteredSources = MOCK_SOURCES.filter(s => 
+        sources.includes(s.category) || sources.length === 0
+      ).slice(0, 3);
+
+      return {
+        estimate, lower, upper,
+        label: getLabel(estimate),
+        summary: 'This is a mock assessment. In a real response, this would explain the basis for the likelihood estimate.',
+        sources: filteredSources.map(s => ({
+          ...s,
+          date: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000).toLocaleDateString()
+        }))
+      };
+    }
+
+    document.getElementById('submitBtn').addEventListener('click', async () => {
+      const query = document.getElementById('query').value.trim();
+      if (!query) { alert('Please enter a question'); return; }
+
+      const sources = Array.from(document.querySelectorAll('.source-checkbox input:checked')).map(cb => cb.value);
+
+      document.getElementById('placeholder').style.display = 'none';
+      document.getElementById('result').style.display = 'none';
+      document.getElementById('loading').style.display = 'block';
+
+      await new Promise(r => setTimeout(r, 1500 + Math.random() * 1000));
+
+      const mock = generateMock(query, sources);
+
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('result').style.display = 'block';
+
+      document.getElementById('likelihoodValue').textContent = `${(mock.estimate * 100).toFixed(0)}%`;
+      document.getElementById('assessmentLabel').textContent = mock.label;
+      document.getElementById('confidenceInterval').textContent = 
+        `${(mock.lower * 100).toFixed(0)}% - ${(mock.upper * 100).toFixed(0)}% confidence interval`;
+      document.getElementById('reasoningSummary').textContent = mock.summary;
+
+      document.getElementById('sourcesList').innerHTML = mock.sources.map(s => `
+        <li>
+          <div class="source-title">${s.title}</div>
+          <div class="source-meta">${s.relevance} relevance · ${s.date}</div>
+        </li>
+      `).join('');
+    });
+  </script>
+</body>
+</html>

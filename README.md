@@ -64,6 +64,9 @@ NodusAI provides evidence-backed likelihood assessments based on publicly availa
 - No assurance of accuracy or completeness is implied
 - Users are responsible for their own decisions
 
+## No Financial Advice
+NodusAI does not provide financial, investment, legal, or tax advice. All outputs are for informational and research purposes only.
+
 For more details, see docs/legal.md
 
 ## Use Cases
@@ -81,14 +84,18 @@ For more details, see docs/legal.md
 NodusAI is under active development.
 Interfaces and schemas may evolve as the platform expands.
 
-Learn More
 
-Website: https://nodusai.app
+## Limitation of Liability
+See docs/legal.md for complete terms and conditions.
 
-Documentation: see /docs
+## License
+MIT License - See LICENSE for details.
 
-API Example
+## Contact
+Documentation Issues: Open a GitHub issue
+Security Concerns: See SECURITY.md
 
+## API Examplek
 // All examples use mock endpoints - replace with your actual API URL
 const response = await fetch('https://api.example.com/v1/assess', {
   method: 'POST',
@@ -105,53 +112,18 @@ const result = await response.json();
 console.log(result.assessment);  // e.g., "Unlikely"
 console.log(result.likelihood);  // { estimate: 0.35, lower_bound: 0.25, upper_bound: 0.45 }
 
-Documentation
+## Documentation
 
 API Reference - Endpoints, authentication, request/response formats
-
 Architecture Overview - System design (public components only)
-
 X402 Payments - Crypto micropayment integration
-
 Security - Security practices and guidelines
-
 Legal & Disclaimers - Terms, liability, and usage restrictions
 
-Repository Structure
+## Repository Structure
+
 ├── docs/           # Documentation
 ├── schemas/        # JSON schemas for API validation
 ├── examples/       # Code examples and client libraries
 ├── demo-ui/        # Interactive demo (mock data only)
 └── README.md       # This file
-
-What's Included
-API documentation and schemas
-Example client implementations
-Interactive demo UI (mock data)
-Integration guides
-
-What's NOT Included
-Proprietary oracle engine
-Scoring algorithms
-Production API endpoints
-Infrastructure configuration
-Training data or models
-
-Legal Notices
-
-Disclaimer
-THE LIKELIHOOD ASSESSMENTS PROVIDED BY NODUSAI ARE PROBABILISTIC RESEARCH SIGNALS, NOT PREDICTIONS OR GUARANTEES. They are based on publicly available information analyzed at a specific point in time and should not be used as the sole basis for any financial, investment, legal, or other decisions.
-
-No Financial Advice
-NodusAI does not provide financial, investment, legal, or tax advice. All outputs are for informational and research purposes only.
-
-Limitation of Liability
-See docs/legal.md for complete terms and conditions.
-
-License
-MIT License - See LICENSE for details.
-
-Contact
-Documentation Issues: Open a GitHub issue
-Security Concerns: See SECURITY.md
-

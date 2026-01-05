@@ -30,7 +30,7 @@ Content-Type: application/json
 ```
 Receive 402 Response
 
-HTTP/1.1 402 Payment Required
+```HTTP/1.1 402 Payment Required
 Content-Type: application/json
 
 {
@@ -48,3 +48,47 @@ Content-Type: application/json
   }
 }
 
+```
+Send Payment
+Send the specified amount to the recipient address on the indicated network.
+
+```Retry with Proof
+POST /v1/assess
+Content-Type: application/json
+X-Payment-Tx: 0xabc123...your_transaction_hash
+X-Payment-Network: base-sepolia
+
+{
+  "query": "Will gold prices rise in 2026?"
+}
+
+```
+Receive Assessment
+```HTTP/1.1 200 OK
+
+{
+  "id": "assess_xyz789",
+  "query": "Will gold prices rise in 2026?",
+  "likelihood": { ... },
+  ...
+}
+
+````
+Supported Networks
+
+Network	    Currency	Status
+Base Sepolia	USDC	Testnet
+Base Mainnet	USDC	Production
+
+Payment Headers
+
+Header	             Description
+X-Payment-Tx	       Transaction hash proving payment
+X-Payment-Network	    Network where payment was made
+
+Error Codes
+Code	Description
+- payment_required	Initial request requires payment
+- payment_expired	Payment window expired
+- payment_invalid	Transaction not found or invalid
+- payment_insufficient	Amount less than required
